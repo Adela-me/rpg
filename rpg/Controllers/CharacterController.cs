@@ -7,12 +7,23 @@ namespace rpg.Controllers
     [ApiController]
     public class CharacterController : ControllerBase
     {
-        private static Character knight = new Character();
+        private static List<Character> characters = new List<Character>
+        {
+            new Character(),
+            new Character {Id = 1, Name = "Sam"},
+            new Character {Id = 2, Name = "Jane", RpgClass = RpgClass.Mage}
+        };
 
         [HttpGet]
-        public ActionResult<Character> Get()
+        public ActionResult<List<Character>> List()
         {
-            return Ok(knight);
+            return Ok(characters);
+        }
+
+        [HttpGet("{id}")]
+        public ActionResult<Character> GetById(int id)
+        {
+            return Ok(characters.FirstOrDefault(character => character.Id == id));
         }
     }
 }
