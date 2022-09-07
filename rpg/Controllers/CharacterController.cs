@@ -14,21 +14,21 @@ namespace rpg.Controllers
             this.characterService = characterService;
         }
         [HttpGet]
-        public ActionResult<List<Character>> List()
+        public async Task<ActionResult<List<Character>>> List()
         {
-            return Ok(characterService.GetAll());
+            return Ok(await characterService.GetAll());
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Character> GetById(int id)
+        public async Task<ActionResult<Character>> GetById(int id)
         {
-            return Ok(characterService.GetById(id));
+            return Ok(await characterService.GetById(id));
         }
 
         [HttpPost]
-        public ActionResult<List<Character>> Create(Character character)
+        public async Task<ActionResult<List<Character>>> Create(Character character)
         {
-            return Ok(characterService.Create(character));
+            return Ok(await characterService.Create(character));
         }
     }
 }
