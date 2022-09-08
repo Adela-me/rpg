@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
+using rpg.Data;
 using rpg.Dtos.Character;
 using rpg.Models;
 
@@ -14,9 +16,12 @@ namespace rpg.Services.CharacterService
         };
 
         private readonly IMapper mapper;
-        public CharacterService(IMapper mapper)
+        private readonly DataContext context;
+
+        public CharacterService(IMapper mapper, DataContext context)
         {
             this.mapper = mapper;
+            this.context = context;
         }
 
         public async Task<ServiceResponse<List<GetCharacterDto>>> Create(CreateCharacterDto character)
@@ -31,7 +36,10 @@ namespace rpg.Services.CharacterService
 
         public async Task<ServiceResponse<List<GetCharacterDto>>> GetAll()
         {
-            return new ServiceResponse<List<GetCharacterDto>> { Data = characters.Select(character => mapper.Map<GetCharacterDto>(character)).ToList() };
+            var serviceResponse = new ServiceResponse<List<GetCharacterDto>>();
+            var dbCharacters = await context.Characters.ToListAsync();
+            serviceResponse.Data = dbCharacters.Select(character => mapper.Map<GetCharacterDto>(character)).ToList();
+            return serviceResponse;
         }
 
         public async Task<ServiceResponse<GetCharacterDto>> GetById(int id)
