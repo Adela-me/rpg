@@ -28,9 +28,11 @@ namespace rpg.Services.CharacterService
         {
             var serviceResponse = new ServiceResponse<List<GetCharacterDto>>();
             Character newCharacter = mapper.Map<Character>(character);
-            newCharacter.Id = characters.Max(c => c.Id) + 1;
-            characters.Add(newCharacter);
-            serviceResponse.Data = characters.Select(character => mapper.Map<GetCharacterDto>(character)).ToList();
+            context.Characters.Add(newCharacter);
+            await context.SaveChangesAsync();
+            serviceResponse.Data = await context.Characters
+                .Select(character => mapper.Map<GetCharacterDto>(character))
+                .ToListAsync();
             return serviceResponse;
         }
 
