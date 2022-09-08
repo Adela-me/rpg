@@ -69,5 +69,26 @@ namespace rpg.Services.CharacterService
             return serviceResponse;
 
         }
+
+        public async Task<ServiceResponse<List<GetCharacterDto>>> Delete(int id)
+        {
+            var serviceResponse = new ServiceResponse<List<GetCharacterDto>>();
+
+            try
+            {
+                var character = characters.First(c => c.Id == id);
+                characters.Remove(character);
+                serviceResponse.Data = characters.Select(c => mapper.Map<GetCharacterDto>(c)).ToList();
+
+            }
+            catch (Exception e)
+            {
+                serviceResponse.Success = false;
+                serviceResponse.Message = e.Message;
+            }
+
+            return serviceResponse;
+
+        }
     }
 }
