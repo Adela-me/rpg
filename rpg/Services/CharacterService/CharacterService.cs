@@ -45,8 +45,8 @@ namespace rpg.Services.CharacterService
         public async Task<ServiceResponse<GetCharacterDto>> GetById(int id)
         {
             var serviceResponse = new ServiceResponse<GetCharacterDto>();
-            var character = characters.FirstOrDefault(character => character.Id == id);
-            serviceResponse.Data = mapper.Map<GetCharacterDto>(character);
+            var dbCharacter = await context.Characters.FirstOrDefaultAsync(character => character.Id == id);
+            serviceResponse.Data = mapper.Map<GetCharacterDto>(dbCharacter);
             return serviceResponse;
 
         }
