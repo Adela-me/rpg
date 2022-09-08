@@ -42,5 +42,32 @@ namespace rpg.Services.CharacterService
             return serviceResponse;
 
         }
+
+        public async Task<ServiceResponse<GetCharacterDto>> Update(UpdateCharacterDto character)
+        {
+            var serviceResponse = new ServiceResponse<GetCharacterDto>();
+
+            try
+            {
+                var updatedCharacter = characters.FirstOrDefault(c => character.Id == c.Id);
+
+                updatedCharacter.Name = character.Name;
+                updatedCharacter.HitPoints = character.HitPoints;
+                updatedCharacter.Strength = character.Strength;
+                updatedCharacter.Defense = character.Defense;
+                updatedCharacter.Intelligence = character.Intelligence;
+                updatedCharacter.RpgClass = character.RpgClass;
+
+                serviceResponse.Data = mapper.Map<GetCharacterDto>(updatedCharacter);
+            }
+            catch (Exception e)
+            {
+                serviceResponse.Success = false;
+                serviceResponse.Message = e.Message;
+            }
+
+            return serviceResponse;
+
+        }
     }
 }
