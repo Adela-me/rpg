@@ -59,7 +59,8 @@ namespace rpg.Services.CharacterService
 
             try
             {
-                var updatedCharacter = characters.FirstOrDefault(c => character.Id == c.Id);
+                var updatedCharacter = await context.Characters
+                    .FirstOrDefaultAsync(c => character.Id == c.Id);
 
                 updatedCharacter.Name = character.Name;
                 updatedCharacter.HitPoints = character.HitPoints;
@@ -67,6 +68,8 @@ namespace rpg.Services.CharacterService
                 updatedCharacter.Defense = character.Defense;
                 updatedCharacter.Intelligence = character.Intelligence;
                 updatedCharacter.RpgClass = character.RpgClass;
+
+                await context.SaveChangesAsync();
 
                 serviceResponse.Data = mapper.Map<GetCharacterDto>(updatedCharacter);
             }
