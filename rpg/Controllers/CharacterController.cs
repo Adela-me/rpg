@@ -7,8 +7,9 @@ using rpg.Services.CharacterService;
 namespace rpg.Controllers
 {
     [Authorize]
-    [ApiController]
     [Route("api/[controller]")]
+    [ApiController]
+
     public class CharacterController : ControllerBase
     {
         private readonly ICharacterService characterService;
