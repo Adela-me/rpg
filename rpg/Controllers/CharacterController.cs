@@ -3,13 +3,13 @@ using Microsoft.AspNetCore.Mvc;
 using rpg.Dtos.Character;
 using rpg.Models;
 using rpg.Services.CharacterService;
-using System.Security.Claims;
 
 namespace rpg.Controllers
 {
     [Authorize]
-    [ApiController]
     [Route("api/[controller]")]
+    [ApiController]
+
     public class CharacterController : ControllerBase
     {
         private readonly ICharacterService characterService;
@@ -20,8 +20,7 @@ namespace rpg.Controllers
         [HttpGet]
         public async Task<ActionResult<ServiceResponse<List<GetCharacterDto>>>> GetByUser()
         {
-            int userId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value);
-            return Ok(await characterService.GetByUser(userId));
+            return Ok(await characterService.GetByUser());
         }
 
         [HttpGet("{id}")]
@@ -50,6 +49,12 @@ namespace rpg.Controllers
             var response = await characterService.Delete(id);
             if (response.Data == null) { return NotFound(response); }
             return Ok(response);
+        }
+
+        [HttpPost("Skill")]
+        public async Task<ActionResult<ServiceResponse<GetCharacterDto>>> AddCharacterSkill(AddCharacterSkillDto newCharacterSkill)
+        {
+            return Ok(await characterService.AddCharacterSkill(newCharacterSkill));
         }
     }
 }
