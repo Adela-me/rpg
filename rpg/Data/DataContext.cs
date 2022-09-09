@@ -10,9 +10,19 @@ namespace rpg.Data
 
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Skill>().HasData(
+                new Skill { Id = 1, Name = "Fireball", Demage = 30 },
+                new Skill { Id = 2, Name = "Frenzy", Demage = 20 },
+                new Skill { Id = 3, Name = "Blizzard", Demage = 50 }
+                );
+        }
+
         public DbSet<Character> Characters { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Weapon> Weapons { get; set; }
+        public DbSet<Skill> Skills { get; set; }
 
     }
 }
