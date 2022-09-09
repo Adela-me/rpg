@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using rpg.Dtos.Character;
 using rpg.Models;
 using rpg.Services.CharacterService;
-using System.Security.Claims;
 
 namespace rpg.Controllers
 {
@@ -20,8 +19,7 @@ namespace rpg.Controllers
         [HttpGet]
         public async Task<ActionResult<ServiceResponse<List<GetCharacterDto>>>> GetByUser()
         {
-            int userId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value);
-            return Ok(await characterService.GetByUser(userId));
+            return Ok(await characterService.GetByUser());
         }
 
         [HttpGet("{id}")]
