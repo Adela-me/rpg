@@ -12,8 +12,8 @@ using rpg.Data;
 namespace rpg.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220909114348_Skill")]
-    partial class Skill
+    [Migration("20220909221213_FP")]
+    partial class FP
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -47,7 +47,13 @@ namespace rpg.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("Defeats")
+                        .HasColumnType("int");
+
                     b.Property<int>("Defense")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Fights")
                         .HasColumnType("int");
 
                     b.Property<int>("HitPoints")
@@ -67,6 +73,9 @@ namespace rpg.Migrations
                         .HasColumnType("int");
 
                     b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Victories")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -94,6 +103,26 @@ namespace rpg.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Skills");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Damage = 30,
+                            Name = "Fireball"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Damage = 20,
+                            Name = "Frenzy"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Damage = 50,
+                            Name = "Blizzard"
+                        });
                 });
 
             modelBuilder.Entity("rpg.Models.User", b =>

@@ -4,6 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using rpg.Data;
 using rpg.Services.CharacterService;
+using rpg.Services.FightService;
 using rpg.Services.WeaponService;
 using Swashbuckle.AspNetCore.Filters;
 
@@ -43,6 +44,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     });
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<IWeaponService, WeaponService>();
+builder.Services.AddScoped<IFightService, FightService>();
 
 var app = builder.Build();
 

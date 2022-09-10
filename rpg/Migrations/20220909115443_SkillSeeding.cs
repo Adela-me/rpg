@@ -10,17 +10,17 @@ namespace rpg.Migrations
         {
             migrationBuilder.InsertData(
                 table: "Skills",
-                columns: new[] { "Id", "Demage", "Name" },
+                columns: new[] { "Id", "Damage", "Name" },
                 values: new object[] { 1, 30, "Fireball" });
 
             migrationBuilder.InsertData(
                 table: "Skills",
-                columns: new[] { "Id", "Demage", "Name" },
+                columns: new[] { "Id", "Damage", "Name" },
                 values: new object[] { 2, 20, "Frenzy" });
 
             migrationBuilder.InsertData(
                 table: "Skills",
-                columns: new[] { "Id", "Demage", "Name" },
+                columns: new[] { "Id", "Damage", "Name" },
                 values: new object[] { 3, 50, "Blizzard" });
         }
 

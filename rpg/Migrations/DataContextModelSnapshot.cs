@@ -45,7 +45,13 @@ namespace rpg.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("Defeats")
+                        .HasColumnType("int");
+
                     b.Property<int>("Defense")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Fights")
                         .HasColumnType("int");
 
                     b.Property<int>("HitPoints")
@@ -67,6 +73,9 @@ namespace rpg.Migrations
                     b.Property<int?>("UserId")
                         .HasColumnType("int");
 
+                    b.Property<int>("Victories")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("UserId");
@@ -82,7 +91,7 @@ namespace rpg.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("Demage")
+                    b.Property<int>("Damage")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -97,19 +106,19 @@ namespace rpg.Migrations
                         new
                         {
                             Id = 1,
-                            Demage = 30,
+                            Damage = 30,
                             Name = "Fireball"
                         },
                         new
                         {
                             Id = 2,
-                            Demage = 20,
+                            Damage = 20,
                             Name = "Frenzy"
                         },
                         new
                         {
                             Id = 3,
-                            Demage = 50,
+                            Damage = 50,
                             Name = "Blizzard"
                         });
                 });
@@ -150,7 +159,7 @@ namespace rpg.Migrations
                     b.Property<int>("CharacterId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Demage")
+                    b.Property<int>("Damage")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
