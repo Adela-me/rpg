@@ -12,8 +12,8 @@ using rpg.Data;
 namespace rpg.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220909114348_Skill")]
-    partial class Skill
+    [Migration("20220909142312_FightProperties")]
+    partial class FightProperties
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -94,6 +94,26 @@ namespace rpg.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Skills");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Damage = 30,
+                            Name = "Fireball"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Damage = 20,
+                            Name = "Frenzy"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Damage = 50,
+                            Name = "Blizzard"
+                        });
                 });
 
             modelBuilder.Entity("rpg.Models.User", b =>

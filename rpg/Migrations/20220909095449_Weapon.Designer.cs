@@ -97,7 +97,7 @@ namespace rpg.Migrations
                     b.Property<int>("CharacterId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Demage")
+                    b.Property<int>("Damage")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")

@@ -39,7 +39,7 @@ namespace rpg.Services.WeaponService
                 Weapon weapon = new Weapon
                 {
                     Name = newWeapon.Name,
-                    Demage = newWeapon.Demage,
+                    Damage = newWeapon.Damage,
                     Character = character
                 };
 

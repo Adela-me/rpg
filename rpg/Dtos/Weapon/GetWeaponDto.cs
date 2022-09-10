@@ -3,6 +3,6 @@
     public class GetWeaponDto
     {
         public string Name { get; set; }
-        public int Demage { get; set; }
+        public int Damage { get; set; }
     }
 }
